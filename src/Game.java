@@ -7,14 +7,18 @@ public class Game {
     Round currentRound;
     int currentMinBet;
 
+    public Game(int pot, Player[] pList, Deck d, Round cR) {
+        sabaccPot = pot;
+        playerList = pList;
+        deck = d;
+        currentRound = cR;
+        currentMinBet = 10;
+    }
     public void setup(){
 
     }
-    public void sabaccShift(){
-
-    }
     public void startRound(){
-
+        Round thisRound = new Round();
     }
     public void updateFrame(){
 
@@ -28,6 +32,14 @@ public class Game {
     public ArrayList<Card> getDeck(){
         return this.deck.deckList;
     }
+
+    public int getCurrentMinBet() { return this.currentMinBet; }
+
+    public void setCurrentMinBet(int b) { currentMinBet = b; }
+
+    public void setSabaccPot(int p) { sabaccPot = p; }
+
+    public int getSabaccPot() { return this.sabaccPot; }
     public void runGame(){
 
     }
