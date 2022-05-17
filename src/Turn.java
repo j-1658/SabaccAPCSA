@@ -14,6 +14,7 @@ public class Turn {
 
     }
 
+
     public void bet(Game g) { //no UI yet
         if (g.getCurrentMinBet() >= currentPlayer.getPlayerBalance()) {
             System.out.println("Insufficient funds");//temp

@@ -4,7 +4,7 @@ public class Game {
     int sabaccPot;
     Player[] playerList;
     Deck deck;
-    Round currentRound;
+    private Round currentRound;
     int currentMinBet;
 
     public Game(int pot, Player[] pList, Deck d, Round cR) {
@@ -21,7 +21,12 @@ public class Game {
         Round thisRound = new Round(playerList);
         thisRound.run(this);
     }
-
+    public Round getCurrentRound(){
+        return currentRound;
+    }
+    public Turn getCurrentTurn(){
+        return this.getCurrentRound().getTurn();
+    }
     public void updateFrame(){
 
     } //For Chris to do key listeners and Jj to do animation
