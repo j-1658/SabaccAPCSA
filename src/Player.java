@@ -1,14 +1,17 @@
+import java.util.ArrayList;
 
 public class Player {
     int playerBalance;
     int playerNum;
     String name;
     ArrayList<Card> hand;
+    boolean isPlaying;
 
     public Player(int pB, int pN, String n) {
     playerBalance = pB;
     playerNum = pN;
     name = n;
+    isPlaying = true;
     }
 
     public int getPlayerBalance() {
