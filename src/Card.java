@@ -7,10 +7,10 @@ public class Card {
         this.suit = suit.toUpperCase();
         this.value = value;
     }
-    public void setInterface(boolean inField) {
+    public void setInField(boolean inField) {
         this.inField = inField;
     }
-    public boolean getInterface() {
+    public boolean getInField() {
         return this.inField;
     }
     public void setSuit(String suit) {
@@ -27,40 +27,50 @@ public class Card {
     }
     public String stringValue(int v) {
         switch (v)  {
-            case 1: return "ONE";
-                    break;
-            case 2: return "TWO";
-                    break;
-            case 3: return "THREE";
-            break;
-            case 4: return "FOUR";
-            break;
-            case 5: return "FIVE";
-            break;
-            case 6: return "SIX";
-            break;
-            case 7: return "SEVEN";
-            break;
-            case 8: return "EIGHT";
-            break;
-            case 9: return "NINE";
-            break;
+            case 1 : return "ONE";
+            case 2 : return "TWO";
+            case 3 : return "THREE";
+            case 4 : return "FOUR";
+            case 5 : return "FIVE";
+            case 6 : return "SIX";
+            case 7 : return "SEVEN";
+            case 8 : return "EIGHT";
+            case 9 : return "NINE";
             case 10: return "TEN";
-            break;
             case 11: return "ELEVEN";
-            break;
             case 12: return "TWELVE";
-            break;
             case 13: return "THIRTEEN";
-            break;
             case 14: return "FOURTEEN";
-            break;
             case 15: return "FIFTEEN";
-            break;
+            default: return "";
         }
     }
-    public String toString()    {
+    public boolean isSpecial()  {
+        if (suit.equals("BALANCE"))
+            return true;
+        else if (suit.equals("THE IDIOT"))
+            return true;
+        else if (suit.equals("ENDURANCE"))
+            return true;
+        else if (suit.equals("MODERATION"))
+            return true;
+        else if (suit.equals("THE EVIL ONE"))
+            return true;
+        else if (suit.equals("THE QUEEN OF AIR AND DARKNESS"))
+            return true;
+        else if (suit.equals("DEMISE"))
+            return true;
+        else if (suit.equals("THE STAR"))
+            return true;
+        else
+            return false;
+    }
+    public String toString() {
         String output = "";
-        output += stringValue() + " of "+ ;
+        if(isSpecial())
+            output = suit;
+        else
+            output = stringValue(value) + " of "+ suit;
+        return output;
     }
 }

@@ -3,6 +3,7 @@ public class Round {
     Player[] playerList;
     int currentTurnNum;
     Turn playerTurn;
+    Game game;
 
     public Round(Player[] playLst){
         isComplete = false;
@@ -17,7 +18,7 @@ public class Round {
 
                 for(int c = 0; c < playerList[p].hand.size(); c++){ //for each card in each players hand
                     //checks if card is in interference field
-                    if(!playerList[p].hand[c].inField){
+                    if(!playerList[p].hand.get(c).getInField()){
                         //
                         //Randomize suit
                         String suit = "";
@@ -62,20 +63,20 @@ public class Round {
                             }
                         }
                         // actually changes the card
-                        playerList[p].hand[c].setValue(value);
-                        playerList[p].hand[c].setSuit(suit);
+                        playerList[p].hand.get(c).setValue(value);
+                        playerList[p].hand.get(c).setSuit(suit);
                     }
                 }
             }
         }
     }
 
-    void nextTurn(Game g){
-        playerTurn = new Turn(0,playerList[currentTurnNum+1]);
+    void nextTurn(){
+        playerTurn = new Turn(playerList[currentTurnNum+1],game);
         playerTurn.run();
     }
     Player findWinner(){
-
+        for(p)
     }
 
     public Turn getTurn(){
