@@ -27,5 +27,9 @@ public class Deck {
             deckList.add(new Card(false, "THE STAR", -17));
         }
     }
-
+    public void printDeck()    {
+        for (int i = 0; i < deckList.size(); i++)   {
+            System.out.println(deckList.get(i));
+        }
+    }
 }
