@@ -1,29 +1,28 @@
+import java.util.Scanner;
 public class Turn {
-    int playerBet;
-    Player currentPlayer;
+    private Player currentPlayer;
+    private Game game;
 
-    public Turn(int b, Player p) {
-        playerBet = b;
+    public Turn(Player p, Game g) {
         currentPlayer = p;
+        game = g;
     }
 
-    public void updateFrame() { //idk what this will do but it was on design sheet
-
-    }
-
-    public void bet(Game g) { //no UI yet
-        if (g.getCurrentMinBet() >= currentPlayer.getPlayerBalance()) {
+    public void bet(int bet) { //no UI yet
+        Scanner input = new Scanner(System.in);
+        if (game.getCurrentMinBet() >= currentPlayer.getPlayerBalance()) {
             fold(); //make player fold if min bet is larger than their balance
-        } else if (playerBet < g.getCurrentMinBet() || playerBet > currentPlayer.getPlayerBalance()) {
-            bet(g); //make player bet amount they can afford
+        } else if (bet < game.getCurrentMinBet() || bet > currentPlayer.getPlayerBalance()) {
+            System.out.println("Please input a valid bet");
+            bet(game, input.nextInt()); //make player bet amount they can afford
         } else {
-            g.setCurrentMinBet(playerBet); //update min bet and remove the credits used to bet from the player
-            currentPlayer.setPlayerBalance(currentPlayer.getPlayerBalance() - playerBet);
-            g.setSabaccPot(g.getSabaccPot() + playerBet);
+            game.setCurrentMinBet(bet); //update min bet and remove the credits used to bet from the player
+            currentPlayer.setPlayerBalance(currentPlayer.getPlayerBalance() - bet);
+            game.setSabaccPot(game.getSabaccPot() + bet);
         }
     }
 
-    public void fold() { //how
-
+    public void fold() {
+        game.getRound().nextTurn();
     }
 }
