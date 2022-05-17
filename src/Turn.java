@@ -14,7 +14,7 @@ public class Turn {
             fold(); //make player fold if min bet is larger than their balance
         } else if (bet < game.getCurrentMinBet() || bet > currentPlayer.getPlayerBalance()) {
             System.out.println("Please input a valid bet");
-            bet(game, input.nextInt()); //make player bet amount they can afford
+            bet(input.nextInt()); //make player bet amount they can afford
         } else {
             game.setCurrentMinBet(bet); //update min bet and remove the credits used to bet from the player
             currentPlayer.setPlayerBalance(currentPlayer.getPlayerBalance() - bet);
