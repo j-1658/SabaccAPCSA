@@ -23,6 +23,15 @@ public class Turn {
     }
 
     public void fold() {
-        game.getRound().nextTurn();
+        currentPlayer.setIsPlaying(false);
+        game.getCurrentRound().nextTurn();
+    }
+
+    public void endTurn() {
+        game.getCurrentRound().nextTurn();
+    }
+
+    public void hit() {
+        //do later
     }
 }
