@@ -18,11 +18,13 @@ public class Game {
 
     }
     public void startRound(){
-        Round thisRound = new Round();
+        Round thisRound = new Round(playerList);
+        thisRound.run(this);
     }
+
     public void updateFrame(){
 
-    }
+    } //For Chris to do key listeners and Jj to do animation
     public void nextRound(){
 
     }
