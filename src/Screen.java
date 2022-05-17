@@ -19,6 +19,9 @@ public class Screen extends JFrame implements KeyListener{
         BET, CHECK, FOLD, HIT, SWITCH, QUIT, CONTINUE, BACK;
     }
 
+    public enum optionListPresets{
+        DRAWING, BETWEENROUND, SWITCHING;
+    }
 
     //Position of "currentOptions" arraylist
     private int curOptionPosition;
@@ -49,39 +52,50 @@ public class Screen extends JFrame implements KeyListener{
         this.curOptions.add(newOption);
     }
 
+
     //Check which choice was selected
     public void determineChoice(Screen.possibleOptions choice){
         switch(choice){
             case BET:
                 //Bet something
-                listen = false;
                 this.game.getCurrentTurn().bet(scan.nextInt());
                 break;
             case HIT:
                 //Gain card
-                listen = false;
-                //game.getCurrentTurn().hit()
+                game.getCurrentTurn().hit();
                 break;
             case FOLD:
+                listen = false;
                 this.game.getCurrentTurn().fold();
                 break;
             case QUIT:
+                listen = false;
                 //Quit game
                 break;
             case CHECK:
+                listen = false;
+                this.game.getCurrentTurn().endTurn();
                 //proceed in order
                 break;
             case SWITCH:
                 //switch card
+
                 break;
             case CONTINUE:
                 //play another round
+                listen = false;
+
                 break;
             case BACK:
+
                 //go back to last few choices
                 break;
 
         }
+    }
+
+    public void setCurrentOptions(Screen.optionListPresets preset){
+
     }
 
     public void keyTyped(KeyEvent e) {
