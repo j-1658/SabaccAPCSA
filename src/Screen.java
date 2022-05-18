@@ -20,7 +20,7 @@ public class Screen extends JFrame implements KeyListener{
     }
 
     public enum optionListPresets{
-        DRAWING, BETWEENROUND, SWITCHING;
+        DRAWING, BETWEENROUND;
     }
 
     //Position of "currentOptions" arraylist
@@ -95,7 +95,15 @@ public class Screen extends JFrame implements KeyListener{
     }
 
     public void setCurrentOptions(Screen.optionListPresets preset){
+        switch(preset){
+            //Normal case, during the drawing period of a round
+            case DRAWING:
 
+                break;
+            case BETWEENROUND:
+
+                break;
+        }
     }
 
     public void keyTyped(KeyEvent e) {
