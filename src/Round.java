@@ -82,9 +82,9 @@ public class Round {
     public Turn getTurn(){
         return playerTurn;
     }
-    void run(Game g){
+    void run(){
         for(int p = 0; p < playerList.length; p++){
-            nextTurn(g);
+            nextTurn();
         }
 
     }
