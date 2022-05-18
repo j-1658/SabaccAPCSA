@@ -76,7 +76,18 @@ public class Round {
         playerTurn.run();
     }
     Player findWinner(){
-        for(p)
+        Player winner = new Player(1000, -1, "No Winner");
+        for(int p = 0; p < playerList.length; p++){
+            if(playerList[p].calcHand() > winner.calcHand()){
+                winner.name = playerList[p].getName();
+            }
+        }
+        for(Player p: playerList){
+            if(winner.name.equals(p.getName())){
+                return p;
+            }
+        }
+        return winner;
     }
 
     public Turn getTurn(){

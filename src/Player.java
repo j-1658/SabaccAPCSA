@@ -6,12 +6,46 @@ public class Player {
     String name;
     ArrayList<Card> hand;
     boolean isPlaying;
+    boolean isBot;
 
-    public Player(int pB, int pN, String n) {
+    public Player(int pB, int pN, String n, boolean iB) {
     playerBalance = pB;
     playerNum = pN;
     name = n;
     isPlaying = true;
+    isBot = iB;
+    }
+
+
+    public int calcHand() {
+        boolean containsIdiot = false;
+        boolean contains2 = false;
+        boolean contains3 = false;
+        int sum = 0;
+        for (Card c: hand) {
+            switch (c.getValue()) {
+                case 0: containsIdiot = true;
+                break;
+                case 2: contains2 = true;
+                break;
+                case 3: contains3 = true;
+                break;
+            }
+            sum += c.getValue();
+        }
+        if (containsIdiot && contains2 && contains3 && hand.size() == 3) {
+            return -1; //return special num for idiots array
+        }
+        return Math.abs(sum); //return abs value of all cards in hand
+    }
+
+    public void botPlay() {
+        int stopVal = (int) ((Math.random() * 6) + 16);
+        if (isBot) {
+            while (calcHand() != -1 || calcHand() > stopVal) {
+                //hit()
+            }
+        }
     }
 
     public int getPlayerBalance() {
