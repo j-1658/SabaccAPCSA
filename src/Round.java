@@ -4,11 +4,13 @@ public class Round {
     int currentTurnNum;
     Turn playerTurn;
     Game game;
+    boolean checked;
 
     public Round(Player[] playLst){
         isComplete = false;
         this.playerList = playLst;
         currentTurnNum = -1;
+        checked =false;
     }
     public void sabaccShift(){
         double shiftChance = 0.25; //25% chance to shift
@@ -71,21 +73,36 @@ public class Round {
         }
     }
 
-    void nextTurn(){
+    boolean nextTurn(){
         playerTurn = new Turn(playerList[currentTurnNum+1],game);
         playerTurn.run();
+        return playerTurn.isCheckTurn;
     }
     Player findWinner(){
-        for(p)
+        Player winner = new Player(1000, -1, "No Winner", true);
+        for(int p = 0; p < playerList.length; p++){
+            if(playerList[p].calcHand() > winner.calcHand()){
+                winner.name = playerList[p].getName();
+            }
+        }
+        for(Player p: playerList){
+            if(winner.name.equals(p.getName())){
+                return p;
+            }
+        }
+        return winner;
     }
 
     public Turn getTurn(){
         return playerTurn;
     }
-    void run(){
-        for(int p = 0; p < playerList.length; p++){
-            nextTurn();
+    Player run(){
+        int p = 0;
+        while(!checked) {
+            System.out.println("STARTING " + playerList[p].getName() + "'s turn"); //PLACEHOLDER
+            checked = nextTurn();
         }
+        return findWinner();
 
     }
 
