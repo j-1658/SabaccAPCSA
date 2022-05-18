@@ -53,13 +53,13 @@ public class Screen extends JFrame implements KeyListener{
         this.curOptions.add(newOption);
     }
 
-
     //Check which choice was selected
     public void determineChoice(Screen.possibleOptions choice){
         switch(choice){
             //Bet something or go back
             case BET:
                 this.setCurrentOptions(optionListPresets.BET);
+                // Re Draw Buttons *******************************************************************
                 this.game.getCurrentTurn().bet(scan.nextInt());
                 break;
             //Gain a card
@@ -86,11 +86,11 @@ public class Screen extends JFrame implements KeyListener{
             //Stop betting
             case BACK:
                 this.setCurrentOptions(optionListPresets.DRAWING);
+                // Re Draw Buttons ********************************************************
                 break;
 
         }
     }
-
     //Use presets to make list of options
     public void setCurrentOptions(Screen.optionListPresets preset){
         curOptions.clear();
@@ -122,7 +122,6 @@ public class Screen extends JFrame implements KeyListener{
                 break;
         }
     }
-
     public void keyTyped(KeyEvent e) {
         //keyTyped = Invoked when a key is typed. Uses KeyChar, char output
         if(listen) {
@@ -154,15 +153,14 @@ public class Screen extends JFrame implements KeyListener{
         }
 
     }
-
     public void keyPressed(KeyEvent e) {
 
         //keyPressed = Invoked when a physical key is pressed down. Uses KeyCode, int output
 
         if(listen){
             switch(e.getKeyCode()) {
-                //enter
-                case 13:
+                //SpaceBar
+                case 32:
                     determineChoice(curOptions.get(curOptionPosition));
 
                     break;
@@ -174,7 +172,7 @@ public class Screen extends JFrame implements KeyListener{
                     } else {
                         this.curOptionPosition--;
                     }
-                    // update buttons
+                    // update buttons **************************************************************************
                     break;
 
                 //Down
@@ -185,7 +183,7 @@ public class Screen extends JFrame implements KeyListener{
                     } else {
                         this.curOptionPosition++;
                     }
-                    //update buttons
+                    //update buttons ****************************************************************************
                     break;
             }
         }
