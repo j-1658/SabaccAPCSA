@@ -34,4 +34,18 @@ public class Deck {
             System.out.println(deckList.get(i));
         }
     }
+    public void shuffle()   {
+        Card[] tempDeck = new Card[deckList.size()];
+        int i = (int)(Math.random()*(deckList.size()-1));
+        for(Card x : deckList)  {
+            while(deckList.get(i)!=null)    {
+                i = (int)(Math.random()*(deckList.size()-1));
+            }
+            tempDeck[i] = deckList.get(i);
+        }
+        deckList.clear();
+        for(Card y : tempDeck)  {
+            deckList.add(y);
+        }
+    }
 }
