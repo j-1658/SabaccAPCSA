@@ -18,9 +18,9 @@ public class Game {
     public void setup(){
 
     }
-    public void startRound(){
+    public Player startRound(){ //returns the winner
         Round thisRound = new Round(playerList);
-        thisRound.run();
+        return thisRound.run();
     }
     public Round getCurrentRound(){
         return currentRound;

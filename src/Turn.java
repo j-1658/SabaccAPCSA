@@ -31,6 +31,8 @@ public class Turn {
     }
 
     public void hit() {
-        //do later
+        if (currentPlayer.calcHand() <= 23) {
+            currentPlayer.getHand().add(game.getDeck().remove(0)); //index 0 is top card here, might change later
+        }
     }
 }

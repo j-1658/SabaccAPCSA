@@ -8,12 +8,15 @@ public class Player {
     boolean isPlaying;
     boolean isBot;
 
-    public Player(int pB, int pN, String n, boolean iB) {
+    Game game;
+
+    public Player(int pB, int pN, String n, boolean iB, Game g) {
     playerBalance = pB;
     playerNum = pN;
     name = n;
     isPlaying = true;
     isBot = iB;
+    game = g;
     }
 
 
@@ -42,8 +45,8 @@ public class Player {
     public void botPlay() {
         int stopVal = (int) ((Math.random() * 6) + 16);
         if (isBot) {
-            while (calcHand() != -1 || calcHand() > stopVal) {
-                //hit()
+            while (calcHand() != -1 || calcHand() >= stopVal) {
+                game.getCurrentRound().getTurn().hit(); //hit until idiots array or stopVal or higher
             }
         }
     }
@@ -68,12 +71,7 @@ public class Player {
         return hand;
     }
 
-    public void removeCard(int index) {
-        hand.remove(index);
+    public void setIsPlaying(boolean p) {
+        isPlaying = p;
     }
-
-    public void addCard(int index, Card c) {
-        hand.add(index, c);
-    }
-
 }
