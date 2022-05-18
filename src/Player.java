@@ -45,8 +45,8 @@ public class Player {
     public void botPlay() {
         int stopVal = (int) ((Math.random() * 6) + 16);
         if (isBot) {
-            while (calcHand() != -1 || calcHand() > stopVal) {
-                game.getCurrentRound().getTurn().hit();
+            while (calcHand() != -1 || calcHand() >= stopVal) {
+                game.getCurrentRound().getTurn().hit(); //hit until idiots array or stopVal or higher
             }
         }
     }
