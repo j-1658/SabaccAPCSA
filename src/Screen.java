@@ -148,7 +148,7 @@ public class Screen extends JFrame implements KeyListener{
                     break;
                 //Up
                 case 38:
-                    //it will either go up one, or go to the bottom (case: highest position)
+                    //it will either go up one, or go to the bottom (if highest position)
                     if(this.curOptionPosition == 0){
                         this.curOptionPosition = curOptions.size()-1;
                     } else {
@@ -157,7 +157,7 @@ public class Screen extends JFrame implements KeyListener{
                     break;
                 //Down
                 case 40:
-                    //it will either go down one, or go to the top (case: lowest position)
+                    //it will either go down one, or go to the top (if lowest position)
                     if(this.curOptionPosition == curOptions.size()-1) {
                         this.curOptionPosition = 0;
                     } else {
