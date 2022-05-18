@@ -7,6 +7,7 @@ public class Game {
     private Round currentRound;
     int currentMinBet;
 
+
     public Game(int pot, Player[] pList, Deck d, Round cR) {
         sabaccPot = pot;
         playerList = pList;

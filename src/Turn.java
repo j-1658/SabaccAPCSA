@@ -2,7 +2,6 @@ import java.util.Scanner;
 public class Turn {
     private Player currentPlayer;
     private Game game;
-
     public Turn(Player p, Game g) {
         currentPlayer = p;
         game = g;
