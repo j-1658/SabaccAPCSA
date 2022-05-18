@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 public class Deck {
-    private ArrayList<Card> deckList;
+    private ArrayList<Card> deckList = new ArrayList<Card>();
     public Deck()   {
         String mySuit = "";
+        Card myCard = new Card(false,"YIPEE!",100);
         for (int i = 0; i < 4; i++)    {
             if     (i == 0)
-               mySuit = "FLASKS";
+                mySuit = "FLASKS";
             else if(i == 1)
                 mySuit = "SABERS";
             else if(i == 2)
@@ -13,7 +14,8 @@ public class Deck {
             else if(i == 3)
                 mySuit = "COINS";
             for (int j = 0; j < 15; j++)    {
-                deckList.add(new Card(false, mySuit, (j+1)));
+                myCard = new Card(false, mySuit, (j+1));
+                deckList.add(myCard);
             }
         }
         for(int i = 0; i < 2; i++)  {
