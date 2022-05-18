@@ -39,6 +39,15 @@ public class Player {
         return Math.abs(sum); //return abs value of all cards in hand
     }
 
+    public void botPlay() {
+        int stopVal = (int) ((Math.random() * 6) + 16);
+        if (isBot) {
+            while (calcHand() != -1 || calcHand() > stopVal) {
+                //hit()
+            }
+        }
+    }
+
     public int getPlayerBalance() {
         return playerBalance;
     }
