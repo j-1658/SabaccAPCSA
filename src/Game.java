@@ -19,7 +19,7 @@ public class Game {
     }
     public void startRound(){
         Round thisRound = new Round(playerList);
-        thisRound.run(this);
+        thisRound.run();
     }
     public Round getCurrentRound(){
         return currentRound;
