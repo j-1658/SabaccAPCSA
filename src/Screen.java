@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Screen extends JFrame implements KeyListener{
-    private Game game;
-    private Scanner scan = new Scanner(System.in);
+    private final Game game;
+    private final Scanner scan = new Scanner(System.in);
 
     //An actively changing arraylist, that contains all current options for the player to cycle through
     private ArrayList<Screen.possibleOptions> curOptions = new ArrayList<>();
@@ -17,11 +17,11 @@ public class Screen extends JFrame implements KeyListener{
 
     //All the possible-non card options the player can make
     public enum possibleOptions{
-        BET, CHECK, FOLD, HIT, QUIT, CONTINUE, BACK;
+        BET, CHECK, FOLD, HIT, QUIT, CONTINUE, BACK
     }
     //A list of presets for the curOptions List
     public enum optionListPresets{
-        DRAWING, BETWEENROUND, BET, AFTERBET;
+        DRAWING, BETWEENROUND, BET, AFTERBET
     }
 
     //Position of "currentOptions" arraylist
@@ -96,7 +96,7 @@ public class Screen extends JFrame implements KeyListener{
         curOptions.clear();
         curOptionPosition = 0;
         switch(preset){
-            //Normal case, during the drawing period of a round or you went back from betting
+            //Normal case, during the drawing period of a round, or you went back from betting
 
             case DRAWING:
                 curOptions.add(0, possibleOptions.BET);
