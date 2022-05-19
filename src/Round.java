@@ -76,7 +76,7 @@ public class Round {
     boolean nextTurn(){
         playerTurn = new Turn(playerList[currentTurnNum+1],game);
         playerTurn.run();
-        return playerTurn.isCheckTurn;
+        return playerTurn.getIsCheckTurn();
     }
     Player findWinner(){
         Player winner = new Player(1000, -1, "No Winner", true, game);
