@@ -48,4 +48,13 @@ public class Deck {
             deckList.add(y);
         }
     }
+    public ArrayList getDeckList()  {
+        return deckList;
+    }
+    public Card drawCard()  {
+        return deckList.remove(0);
+    }
+    public void returnToDeck (Card returnedCard)    {
+        deckList.add(returnedCard);
+    }
 }
