@@ -38,10 +38,10 @@ public class Card {
             case 9 : return "NINE";
             case 10: return "TEN";
             case 11: return "ELEVEN";
-            case 12: return "TWELVE";
-            case 13: return "THIRTEEN";
-            case 14: return "FOURTEEN";
-            case 15: return "FIFTEEN";
+            case 12: return "COMMANDER";
+            case 13: return "MISTRESS";
+            case 14: return "MASTER";
+            case 15: return "ACE";
             default: return "";
         }
     }
