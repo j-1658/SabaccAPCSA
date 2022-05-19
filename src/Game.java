@@ -42,7 +42,7 @@ public class Game {
         return this.playerList;
     }
     public ArrayList<Card> getDeck(){
-        return this.deck.deckList;
+        return this.deck.getDeckList();
     }
 
     public int getCurrentMinBet() { return this.currentMinBet; }
