@@ -36,16 +36,25 @@ public class Deck {
     }
     public void shuffle()   {
         Card[] tempDeck = new Card[deckList.size()];
-        int i = (int)(Math.random()*(deckList.size()-1));
+        int i = -1;
         for(Card x : deckList)  {
-            while(deckList.get(i)!=null)    {
-                i = (int)(Math.random()*(deckList.size()-1));
-            }
-            tempDeck[i] = deckList.get(i);
+            do
+                i = (int)(Math.random()*deckList.size());
+            while (tempDeck[i] != null);
+            tempDeck[i] = x;
         }
         deckList.clear();
         for(Card y : tempDeck)  {
             deckList.add(y);
         }
+    }
+    public ArrayList getDeckList()  {
+        return deckList;
+    }
+    public Card drawCard()  {
+        return deckList.remove(0);
+    }
+    public void returnToDeck (Card returnedCard)    {
+        deckList.add(returnedCard);
     }
 }

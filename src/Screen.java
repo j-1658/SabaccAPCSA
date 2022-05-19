@@ -86,7 +86,7 @@ public class Screen extends JFrame implements KeyListener{
             //Stop betting
             case BACK:
                 this.setCurrentOptions(optionListPresets.DRAWING);
-                // Re Draw Buttons ********************************************************
+                // Re Draw Buttons ******************************************************************************
                 break;
 
         }
