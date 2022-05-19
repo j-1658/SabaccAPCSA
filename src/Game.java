@@ -16,7 +16,7 @@ public class Game {
         currentMinBet = 10;
     }
     public void setup(){
-
+        deck.shuffle();
     }
     public Player startRound(){ //returns the winner
         Round thisRound = new Round(playerList);
