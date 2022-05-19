@@ -79,12 +79,18 @@ public class Round {
         return playerTurn.isCheckTurn;
     }
     Player findWinner(){
-        Player winner = new Player(1000, -1, "No Winner", true);
-        for(int p = 0; p < playerList.length; p++){
+        Player winner = new Player(1000, -1, "No Winner", true, game);
+        for(int p = 0; p < playerList.length; p++){ //checks for highest value
             if(playerList[p].calcHand() > winner.calcHand()){
                 winner.name = playerList[p].getName();
             }
         }
+        for(int p = 0; p < playerList.length; p++){ //checks for special combos
+            if(playerList[p].calcHand() == -1 || playerList[p].calcHand() == 23 ){ //idiots array and sabacc
+                winner.name = playerList[p].getName();
+            }
+        }
+
         for(Player p: playerList){
             if(winner.name.equals(p.getName())){
                 return p;
