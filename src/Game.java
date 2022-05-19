@@ -4,6 +4,8 @@ public class Game {
     int sabaccPot;
     Player[] playerList;
     Deck deck;
+
+    Screen myScreen;
     private Round currentRound;
     int currentMinBet;
 
@@ -14,6 +16,7 @@ public class Game {
         deck = d;
         currentRound = cR;
         currentMinBet = 10;
+        myScreen = new Screen(this);
     }
     public void setup(){
         deck.shuffle();
@@ -28,6 +31,7 @@ public class Game {
     public Turn getCurrentTurn(){
         return this.getCurrentRound().getTurn();
     }
+    
     public void updateFrame(){
 
     } //For Chris to do key listeners and Jj to do animation
