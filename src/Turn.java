@@ -2,11 +2,16 @@ import java.util.Scanner;
 public class Turn {
     private Player currentPlayer;
     private Game game;
+    private boolean isCheckTurn;
+
     public Turn(Player p, Game g) {
         currentPlayer = p;
         game = g;
     }
 
+    public void run() {
+
+    }
     public void bet(int bet) { //no UI yet
         Scanner input = new Scanner(System.in);
         if (game.getCurrentMinBet() >= currentPlayer.getPlayerBalance()) {
@@ -26,13 +31,16 @@ public class Turn {
         game.getCurrentRound().nextTurn();
     }
 
-    public void endTurn() {
-        game.getCurrentRound().nextTurn();
+    public void endTurn() { isCheckTurn = true; }
+
+    public boolean getIsCheckTurn() {
+        return isCheckTurn;
     }
 
     public void hit() {
-        if (currentPlayer.calcHand() <= 23) {
             currentPlayer.getHand().add(game.getDeck().remove(0)); //index 0 is top card here, might change later
+        if (currentPlayer.calcHand() > 23) {
+            fold();
         }
     }
 }
