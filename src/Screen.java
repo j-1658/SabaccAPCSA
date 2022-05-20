@@ -81,7 +81,7 @@ public class Screen extends JFrame implements KeyListener{
                 break;
             //Continue playing game by starting another round
             case CONTINUE:
-                game.startRound();
+                game.nextRound();
                 break;
             //Stop betting
             case BACK:
@@ -103,22 +103,25 @@ public class Screen extends JFrame implements KeyListener{
                 curOptions.add(possibleOptions.CHECK);
                 curOptions.add(possibleOptions.FOLD);
                 curOptions.add(possibleOptions.HIT);
+                //update buttons ***************************************************************
                 break;
             //After a round finishes, you choose to continue or not
             case BETWEENROUND:
                 curOptions.add(possibleOptions.CONTINUE);
                 curOptions.add(possibleOptions.QUIT);
+                //update buttons ***************************************************************
                 break;
             //While ur betting you have one option to go back or enter a bet
             case BET:
                 curOptions.add(possibleOptions.BACK);
-
+                //update buttons ****************************************************************
                 break;
             //No option to bet after you bet
             case AFTERBET:
                 curOptions.add(possibleOptions.CHECK);
                 curOptions.add(possibleOptions.FOLD);
                 curOptions.add(possibleOptions.HIT);
+                //update buttons *****************************************************************
                 break;
         }
     }

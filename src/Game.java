@@ -16,10 +16,13 @@ public class Game {
         deck = d;
         currentRound = cR;
         currentMinBet = 10;
-        myScreen = new Screen(this);
+        setup();
     }
     public void setup(){
+
         deck.shuffle();
+        myScreen = new Screen(this);
+        nextRound();
     }
     public Player startRound(){ //returns the winner
         Round thisRound = new Round(playerList);
@@ -36,7 +39,23 @@ public class Game {
 
     } //For Chris to do key listeners and Jj to do animation
     public void nextRound(){
+        for(int k = 0; k < playerList.length; k++){
+            for(int i = 0; i < playerList[k].getHand().size(); i++){
+                deck.returnToDeck(playerList[k].getHand().remove(i));
+            }
+        }
+        deck.shuffle();
+        Player win = this.startRound();
+        if(win.getPlayerNum() == -1){
+            System.out.println("Nobody won, Want to play again?");
+            //Pot stays
+        } else {
+            System.out.println("Player " + win.getPlayerNum() + " won! Want to play again?");
+            playerList[win.getPlayerNum()].setPlayerBalance(playerList[win.getPlayerNum()].getPlayerBalance()+sabaccPot);
 
+        }
+        myScreen.setCurrentOptions(Screen.optionListPresets.BETWEENROUND);
+        
     }
     public Player[] getPlayerList(){
         return this.playerList;
