@@ -29,7 +29,7 @@ public class Turn {
 
     public void fold() {
         currentPlayer.setIsPlaying(false);
-        game.getCurrentRound().nextTurn();
+        isCheckTurn = true;
     }
 
     public void endTurn() { isCheckTurn = true; }
