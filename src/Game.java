@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Game {
     int sabaccPot;
@@ -9,18 +10,23 @@ public class Game {
     private Round currentRound;
     int currentMinBet;
 
+    final Scanner scan = new Scanner(System.in);
 
-    public Game(int pot, Player[] pList, Deck d, Round cR) {
+
+    public Game(int pot, Deck d, Round cR) {
         sabaccPot = pot;
-        playerList = pList;
         deck = d;
         currentRound = cR;
         currentMinBet = 10;
         setup();
     }
     public void setup(){
-
+        playerListCreation();
         deck.shuffle();
+        for(Player p: playerList){
+            p.getHand().add(this.getDeck().remove(0));
+            p.getHand().add(this.getDeck().remove(0));
+        }
         myScreen = new Screen(this);
         nextRound();
     }
@@ -55,8 +61,20 @@ public class Game {
 
         }
         myScreen.setCurrentOptions(Screen.optionListPresets.BETWEENROUND);
-        
+
     }
+
+    public void playerListCreation(){
+        System.out.println("How many players do you want to have (1 - x)");
+        int x = scan.nextInt();
+        playerList = new Player[x+1];
+        playerList[0] = new Player(100, 0, "bot lmao", true, this);
+        for(int i = 1; i < x+1; i++){
+            System.out.println("What is your player Name, player number" + i);
+            playerList[i] = new Player(100, i, scan.nextLine(), false, this);
+        }
+    }
+
     public Player[] getPlayerList(){
         return this.playerList;
     }
