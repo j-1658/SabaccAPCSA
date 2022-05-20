@@ -76,7 +76,7 @@ public class Round {
     boolean nextTurn(){
         playerTurn = new Turn(playerList[currentTurnNum+1],game);
         playerTurn.run();
-        return playerTurn.isCheckTurn;
+        return playerTurn.getIsCheckTurn();
     }
     Player findWinner(){
         Player winner = new Player(1000, -1, "No Winner", true, game);
@@ -103,11 +103,12 @@ public class Round {
         return playerTurn;
     }
     Player run(){
-        int p = 0;
-        while(!checked) {
-            System.out.println("STARTING " + playerList[p].getName() + "'s turn"); //PLACEHOLDER
-            checked = nextTurn();
-        }
+
+            for(int p = 0; p < playerList.length; p++)
+            while(!checked) {
+                System.out.println("STARTING " + playerList[p].getName() + "'s turn"); //PLACEHOLDER
+                checked = nextTurn();
+            }
         return findWinner();
 
     }

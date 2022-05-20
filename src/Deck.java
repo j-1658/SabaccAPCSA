@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public class Deck {
-    private ArrayList<Card> deckList = new ArrayList<Card>();
+    private ArrayList<Card> deckList = new ArrayList<Card>();   //the deck itself; an array list of cards
     public Deck()   {
         String mySuit = "";
         Card myCard = new Card(false,"YIPEE!",100);
@@ -28,12 +28,12 @@ public class Deck {
             deckList.add(new Card(false, "DEMISE", -13));
             deckList.add(new Card(false, "THE STAR", -17));
         }
-    }
+    }   //deck constructor
     public void printDeck()    {
         for (int i = 0; i < deckList.size(); i++)   {
             System.out.println(deckList.get(i));
         }
-    }
+    }   // prints the entire deck, not to useful outside of testing
     public void shuffle()   {
         Card[] tempDeck = new Card[deckList.size()];
         int i = -1;
@@ -47,5 +47,14 @@ public class Deck {
         for(Card y : tempDeck)  {
             deckList.add(y);
         }
-    }
+    }   //takes all cards in deck & shuffles them(doesn't matter how many cards in deck)
+    public ArrayList getDeckList()  {
+        return deckList;
+    }   //getter for the ArrayList deckList
+    public Card drawCard()  {
+        return deckList.remove(0);
+    }   //removes the top card from deckList & returns it
+    public void returnToDeck (Card returnedCard)    {
+        deckList.add(returnedCard);
+    }   //puts card at end of deckList
 }

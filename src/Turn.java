@@ -2,14 +2,20 @@ import java.util.Scanner;
 public class Turn {
     private Player currentPlayer;
     private Game game;
+    private boolean isCheckTurn;
+
     public Turn(Player p, Game g) {
         currentPlayer = p;
         game = g;
     }
 
+    public void run() {
+        game.myScreen.setCurrentOptions(Screen.optionListPresets.DRAWING);
+        // Refresh/ set stuff for next player ***********************************************************
+    }
     public void bet(int bet) { //no UI yet
         Scanner input = new Scanner(System.in);
-        if (game.getCurrentMinBet() >= currentPlayer.getPlayerBalance()) {
+        if (game.getCurrentMinBet() > currentPlayer.getPlayerBalance()) {
             fold(); //make player fold if min bet is larger than their balance
         } else if (bet < game.getCurrentMinBet() || bet > currentPlayer.getPlayerBalance()) {
             System.out.println("Please input a valid bet");
@@ -23,16 +29,19 @@ public class Turn {
 
     public void fold() {
         currentPlayer.setIsPlaying(false);
-        game.getCurrentRound().nextTurn();
+        isCheckTurn = true;
     }
 
-    public void endTurn() {
-        game.getCurrentRound().nextTurn();
+    public void endTurn() { isCheckTurn = true; }
+
+    public boolean getIsCheckTurn() {
+        return isCheckTurn;
     }
 
     public void hit() {
-        if (currentPlayer.calcHand() <= 23) {
             currentPlayer.getHand().add(game.getDeck().remove(0)); //index 0 is top card here, might change later
+        if (currentPlayer.calcHand() > 23) {
+            fold();
         }
     }
 }
