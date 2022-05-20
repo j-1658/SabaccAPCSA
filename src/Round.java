@@ -103,11 +103,12 @@ public class Round {
         return playerTurn;
     }
     Player run(){
-        int p = 0;
-        while(!checked) {
-            System.out.println("STARTING " + playerList[p].getName() + "'s turn"); //PLACEHOLDER
-            checked = nextTurn();
-        }
+
+            for(int p = 0; p < playerList.length; p++)
+            while(!checked) {
+                System.out.println("STARTING " + playerList[p].getName() + "'s turn"); //PLACEHOLDER
+                checked = nextTurn();
+            }
         return findWinner();
 
     }
