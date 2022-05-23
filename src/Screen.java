@@ -73,7 +73,6 @@ public class Screen extends JFrame implements KeyListener{
             // End the screen
             case QUIT:
                 this.dispose();
-                //something to stop game ***************************** ********************************************
                 break;
             //end player's turn
             case CHECK:

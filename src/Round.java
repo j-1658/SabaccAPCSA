@@ -73,26 +73,55 @@ public class Round {
         }
     }
 
-    boolean nextTurn(){
+    void nextTurn(){
         playerTurn = new Turn(playerList[currentTurnNum+1],game);
         playerTurn.run();
-        return playerTurn.getIsCheckTurn();
     }
     Player findWinner(){
-        Player winner = new Player(1000, -1, "No Winner", true, game);
-        for(int p = 0; p < playerList.length; p++){ //checks for highest value
-            if(playerList[p].calcHand() > winner.calcHand()){
-                winner.name = playerList[p].getName();
-            }
-        }
-        for(int p = 0; p < playerList.length; p++){ //checks for special combos
-            if(playerList[p].calcHand() == -1 || playerList[p].calcHand() == 23 ){ //idiots array and sabacc
-                winner.name = playerList[p].getName();
+        Player winner = new Player(0, -1, "No Winner", true, game);
+
+        int winnerHand = 0;
+        int winnerCardCount = 0;
+
+        for(int p = 0; p < playerList.length; p++) { //checks for highest value
+            if (playerList[p].getIsPlaying()){
+                if (playerList[p].calcHand() >= winnerHand && winnerHand != -1) {
+                    if(playerList[p].getHand().size() == winnerCardCount) {
+                        int x = (int) Math.random()*2;
+                        if(x == 0){
+                            winner.playerNum = playerList[p].getPlayerNum();
+                            winnerCardCount = playerList[p].getHand().size();
+                            winnerHand = playerList[p].calcHand();
+                        }
+                    }
+                    else{
+                        winner.playerNum = playerList[p].getPlayerNum();
+                        winnerCardCount = playerList[p].getHand().size();
+                        winnerHand = playerList[p].calcHand();
+                    }
+                }
+                if (playerList[p].calcHand() == -1) { //idiots array and sabacc
+                    if(winnerHand == -1){
+                        if(playerList[p].getHand().size() == winnerCardCount) {
+                            int x = (int) Math.random() * 2;
+                            if (x == 0) {
+                                winner.playerNum = playerList[p].getPlayerNum();
+                                winnerCardCount = playerList[p].getHand().size();
+                                winnerHand = playerList[p].calcHand();
+                            }
+                        }
+                    }
+                    else{
+                        winner.playerNum = playerList[p].getPlayerNum();
+                        winnerCardCount = playerList[p].getHand().size();
+                        winnerHand = playerList[p].calcHand();
+                    }
+                }
             }
         }
 
         for(Player p: playerList){
-            if(winner.name.equals(p.getName())){
+            if(winner.playerNum == p.playerNum){
                 return p;
             }
         }
@@ -103,12 +132,13 @@ public class Round {
         return playerTurn;
     }
     Player run(){
-
-            for(int p = 0; p < playerList.length; p++)
-            while(!checked) {
-                System.out.println("STARTING " + playerList[p].getName() + "'s turn"); //PLACEHOLDER
-                checked = nextTurn();
+        for(int p = 0; p < playerList.length; p++) {
+            System.out.println("STARTING " + playerList[p].getName() + "'s turn"); //PLACEHOLDER
+            nextTurn();
+            while (!checked) {
+                checked = playerTurn.getIsCheckTurn();
             }
+        }
         return findWinner();
 
     }

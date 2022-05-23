@@ -74,4 +74,6 @@ public class Player {
     public void setIsPlaying(boolean p) {
         isPlaying = p;
     }
+
+    public boolean getIsPlaying(){ return isPlaying;}
 }

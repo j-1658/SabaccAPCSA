@@ -11,7 +11,7 @@ public class Turn {
 
     public void run() {
         game.myScreen.setCurrentOptions(Screen.optionListPresets.DRAWING);
-        // Refresh/ set stuff for next player ***********************************************************
+        // Refresh/draw set of stuff for next player ***********************************************************
     }
     public void bet(int bet) { //no UI yet
         Scanner input = new Scanner(System.in);

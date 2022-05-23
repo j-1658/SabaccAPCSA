@@ -18,15 +18,10 @@ public class Game {
         deck = d;
         currentRound = cR;
         currentMinBet = 10;
-        setup();
+
     }
     public void setup(){
         playerListCreation();
-        deck.shuffle();
-        for(Player p: playerList){
-            p.getHand().add(this.getDeck().remove(0));
-            p.getHand().add(this.getDeck().remove(0));
-        }
         myScreen = new Screen(this);
         nextRound();
     }
@@ -51,6 +46,10 @@ public class Game {
             }
         }
         deck.shuffle();
+        for(Player p: playerList){
+            p.getHand().add(this.deck.drawCard());
+            p.getHand().add(this.deck.drawCard());
+        }
         Player win = this.startRound();
         if(win.getPlayerNum() == -1){
             System.out.println("Nobody won, Want to play again?");
@@ -65,8 +64,9 @@ public class Game {
     }
 
     public void playerListCreation(){
-        System.out.println("How many players do you want to have (1 - x)");
+        System.out.println("How many players do you want to have (1 - 6)");
         int x = scan.nextInt();
+
         playerList = new Player[x+1];
         playerList[0] = new Player(100, 0, "bot lmao", true, this);
         for(int i = 1; i < x+1; i++){
@@ -90,6 +90,6 @@ public class Game {
 
     public int getSabaccPot() { return this.sabaccPot; }
     public void runGame(){
-
+        setup();
     }
 }
