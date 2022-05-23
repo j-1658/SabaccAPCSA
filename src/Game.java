@@ -13,12 +13,10 @@ public class Game {
     final Scanner scan = new Scanner(System.in);
 
 
-    public Game(int pot, Deck d, Round cR) {
+    public Game(int pot) {
         sabaccPot = pot;
-        deck = d;
-        currentRound = cR;
         currentMinBet = 10;
-
+        deck = new Deck();
     }
     public void setup(){
         playerListCreation();
@@ -57,6 +55,7 @@ public class Game {
         } else {
             System.out.println("Player " + win.getPlayerNum() + " won! Want to play again?");
             playerList[win.getPlayerNum()].setPlayerBalance(playerList[win.getPlayerNum()].getPlayerBalance()+sabaccPot);
+            sabaccPot = 200;
 
         }
         myScreen.setCurrentOptions(Screen.optionListPresets.BETWEENROUND);
@@ -68,10 +67,10 @@ public class Game {
         int x = scan.nextInt();
 
         playerList = new Player[x+1];
-        playerList[0] = new Player(100, 0, "bot lmao", true, this);
+        playerList[0] = new Player(200, 0, "bot lmao", true, this);
         for(int i = 1; i < x+1; i++){
             System.out.println("What is your player Name, player number" + i);
-            playerList[i] = new Player(100, i, scan.nextLine(), false, this);
+            playerList[i] = new Player(200, i, scan.nextLine(), false, this);
         }
     }
 
