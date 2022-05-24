@@ -4,6 +4,10 @@ public class Turn {
     private Game game;
     private boolean isCheckTurn;
 
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
     public Turn(Player p, Game g) {
         currentPlayer = p;
         game = g;

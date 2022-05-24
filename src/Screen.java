@@ -29,18 +29,22 @@ public class Screen extends JFrame implements KeyListener{
 
     //initialize Screen
     public Screen(Game g){
-
         //Set up Screen
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500,500);
-        this.setLayout(null);
-        this.addKeyListener(this);
-        this.setVisible(true);
-        this.getContentPane().setBackground(Color.black);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1500,1000);
+        setLayout(null);
+        addKeyListener(this);
+        //paintComponents(m.getGraphics());
+        DisplayGraphics panel = new DisplayGraphics(g);
+        super.add(panel);
+        super.repaint();
 
-        this.listen = false;
-        this.curOptionPosition = 0;
-        this.game = g;
+        setVisible(true);
+        getContentPane().setBackground(Color.black);
+
+        listen = false;
+        curOptionPosition = 0;
+        game = g;
     }
 
     //Clear arraylist containing all choices
@@ -103,6 +107,7 @@ public class Screen extends JFrame implements KeyListener{
                 curOptions.add(possibleOptions.FOLD);
                 curOptions.add(possibleOptions.HIT);
                 //update buttons ***************************************************************
+
                 break;
             //After a round finishes, you choose to continue or not
             case BETWEENROUND:

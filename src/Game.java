@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,8 +20,10 @@ public class Game {
         deck = new Deck();
     }
     public void setup(){
+
         playerListCreation();
         myScreen = new Screen(this);
+
         nextRound();
     }
     public Player startRound(){ //returns the winner
