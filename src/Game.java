@@ -36,7 +36,7 @@ public class Game {
     public Turn getCurrentTurn(){
         return this.getCurrentRound().getTurn();
     }
-    
+
     public void updateFrame(){
 
     } //For Chris to do key listeners and Jj to do animation
@@ -71,9 +71,11 @@ public class Game {
 
         playerList = new Player[x+1];
         playerList[0] = new Player(200, 0, "bot lmao", true, this);
+        String tempName = "";
         for(int i = 1; i < x+1; i++){
-            System.out.println("What is your player Name, player number" + i);
-            playerList[i] = new Player(200, i, scan.nextLine(), false, this);
+            System.out.println("What is your player name, Player " + i +"?");
+            tempName = scan.next();
+            playerList[i] = new Player(200, i, tempName, false, this);
         }
     }
 

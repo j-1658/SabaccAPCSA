@@ -11,12 +11,13 @@ public class Player {
     Game game;
 
     public Player(int pB, int pN, String n, boolean iB, Game g) {
-    playerBalance = pB;
-    playerNum = pN;
-    name = n;
-    isPlaying = true;
-    isBot = iB;
-    game = g;
+        hand = new ArrayList<Card>();
+        playerBalance = pB;
+        playerNum = pN;
+        name = n;
+        isPlaying = true;
+        isBot = iB;
+        game = g;
     }
 
 
@@ -28,11 +29,11 @@ public class Player {
         for (Card c: hand) {
             switch (c.getValue()) {
                 case 0: containsIdiot = true;
-                break;
+                    break;
                 case 2: contains2 = true;
-                break;
+                    break;
                 case 3: contains3 = true;
-                break;
+                    break;
             }
             sum += c.getValue();
         }
