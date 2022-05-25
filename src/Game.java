@@ -22,13 +22,13 @@ public class Game {
     public void setup(){
 
         playerListCreation();
-        myScreen = new Screen(this);
+        //myScreen = new Screen(this);
 
         nextRound();
     }
     public Player startRound(){ //returns the winner
-        Round thisRound = new Round(playerList);
-        return thisRound.run();
+        currentRound = new Round(this);
+        return currentRound.run();
     }
     public Round getCurrentRound(){
         return currentRound;
@@ -41,6 +41,7 @@ public class Game {
 
     } //For Chris to do key listeners and Jj to do animation
     public void nextRound(){
+        //itterate through players
         for(int k = 0; k < playerList.length; k++){
             for(int i = 0; i < playerList[k].getHand().size(); i++){
                 deck.returnToDeck(playerList[k].getHand().remove(i));

@@ -15,33 +15,43 @@ public class Turn {
     }
 
     public void run() {
-        //game.myScreen.setCurrentOptions(Screen.optionListPresets.DRAWING);
-        System.out.println("Would you like to:\n"+
-                "1. Bet\n"+"2. Check\n"+"3. Fold\n"+"4. Hit\n\nInput your number of choice.");
-        int choice = kybd.nextInt();
-        switch(choice)  {
-            case 1 :
-                System.out.println("How much would you like to bet?");
-                int theBet = kybd.nextInt();
-                this.bet(theBet);
-                break;
-            case 2 :
-                endTurn();
-                break;
-            case 3 :
-                this.fold();
-                break;
-            case 4 :
-                hit();
-                break;
+        if (!currentPlayer.isBot && currentPlayer.isPlaying) {
+            //game.myScreen.setCurrentOptions(Screen.optionListPresets.DRAWING);
+            System.out.println("Current Hand: " + currentPlayer.getHand());
+            System.out.println("How much would you like to bet?\n Current Balance: " + currentPlayer.getPlayerBalance() + "c\n Minimum Bet: " + game.currentMinBet + "c");
+            int theBet = kybd.nextInt();
+            this.bet(theBet);
+            System.out.println("Current Hand: " + currentPlayer.getHand());
+            System.out.println("Would you like to:\n" +
+                    "1. Check\n" + "2. Fold\n" + "3. Hit\n\nInput your number of choice.");
+            int choice = kybd.nextInt();
+            switch (choice) {
+                case 1:
+                    endTurn();
+                    break;
+                case 2:
+                    this.fold();
+                    break;
+                case 3:
+                    hit();
+                    break;
+            }
         }
-        // Refresh/draw set of stuff for next player ***********************************************************
+        else if (currentPlayer.isBot){
+            int betAmt = (int)(Math.random()*(currentPlayer.getPlayerBalance()/3));
+            bet(betAmt);
+            System.out.println(currentPlayer.getName() + " has bet " + betAmt);
+            currentPlayer.botPlay();
+        }
+        else{
+            System.out.println(currentPlayer.getName() + " has folded, skipping turn...");
+        }
     }
     public void bet(int bet) { //no UI yet
         Scanner input = new Scanner(System.in);
         if (game.getCurrentMinBet() > currentPlayer.getPlayerBalance()) {
             fold(); //make player fold if min bet is larger than their balance
-            System.out.println("Due to a lack of sufficient balance, you have been forced to fold.");
+            System.out.println("Due to a lack of sufficient balance, " + currentPlayer.getName() + " has been forced to fold.");
         } else if (bet < game.getCurrentMinBet() || bet > currentPlayer.getPlayerBalance()) {
             System.out.println("Please input a valid bet");
             bet(input.nextInt()); //make player bet amount they can afford
@@ -54,7 +64,7 @@ public class Turn {
 
     public void fold() {
         currentPlayer.setIsPlaying(false);
-        isCheckTurn = true;
+        isCheckTurn = false;
     }
 
     public void endTurn()
