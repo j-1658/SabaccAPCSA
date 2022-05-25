@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class DisplayGraphics extends JPanel {
-    int presetScene; // to work with Screen class's preset options
+  /*  int presetScene; // to work with Screen class's preset options
     Game game;
     Player[] localPlayerList;
     //CONSTRUCTORS//
@@ -90,7 +90,7 @@ public class DisplayGraphics extends JPanel {
         int[] cardY = {160,80,80,160,240,240};
         Polygon card = new Polygon(cardX, cardY, 6);
         */
-
+/*
         //Table Color
         Color rectColor = new Color(209,130,88);
         //Button Color
@@ -151,7 +151,7 @@ public class DisplayGraphics extends JPanel {
                 //
                 break;
         }
-    }
+    }*/
     /*public static void main(String[] args) {
         DisplayGraphics m = new DisplayGraphics();
         JFrame f = new JFrame();
