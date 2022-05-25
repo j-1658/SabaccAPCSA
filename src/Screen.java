@@ -35,9 +35,9 @@ public class Screen extends JFrame implements KeyListener{
         setLayout(null);
         addKeyListener(this);
         //paintComponents(m.getGraphics());
-        DisplayGraphics panel = new DisplayGraphics(g);
+        /*DisplayGraphics panel = new DisplayGraphics(g);
         super.add(panel);
-        super.repaint();
+        super.repaint();*/
 
         setVisible(true);
         getContentPane().setBackground(Color.black);
