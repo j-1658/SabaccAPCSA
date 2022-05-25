@@ -6,7 +6,10 @@ import java.nio.Buffer;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class DisplayGraphics extends JPanel {
+public class DisplayGraphics extends Canvas {
+    ////////////////////THIS CLASS WAS WRITTEN USING JAVA.AWT INSTEAD OF JAVA.SWING SO IT HAS A LOT OF ERRORS////////////////
+    //////////////////////WHEN IT IS HOOKED INTO THE SCREEN.CLASS; THIS TOOK UP MULTIPLE DAYS OF DEVELOPMENT////////////////////
+    //////////////////////BUT WE RAN OUT OF TIME TO FIX IT///////////////////////////////////////////////////////////////////
   /*  int presetScene; // to work with Screen class's preset options
     Game game;
     Player[] localPlayerList;
