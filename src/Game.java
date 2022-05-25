@@ -68,7 +68,7 @@ public class Game {
 
     public void playerListCreation(){
         System.out.println("How many players do you want to have (1 - 6)");
-        int x = scan.nextInt();
+        int x = Integer.parseInt(scan.nextLine());
 
         playerList = new Player[x+1];
         playerList[0] = new Player(200, 0, "bot lmao", true, this);

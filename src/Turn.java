@@ -40,7 +40,7 @@ public class Turn {
         else if (currentPlayer.isBot){
             int betAmt = (int)(Math.random()*(currentPlayer.getPlayerBalance()/3));
             bet(betAmt);
-            System.out.println(currentPlayer.getName() + " has bet " + betAmt);
+
             currentPlayer.botPlay();
         }
         else{
@@ -48,17 +48,33 @@ public class Turn {
         }
     }
     public void bet(int bet) { //no UI yet
-        Scanner input = new Scanner(System.in);
-        if (game.getCurrentMinBet() > currentPlayer.getPlayerBalance()) {
-            fold(); //make player fold if min bet is larger than their balance
-            System.out.println("Due to a lack of sufficient balance, " + currentPlayer.getName() + " has been forced to fold.");
-        } else if (bet < game.getCurrentMinBet() || bet > currentPlayer.getPlayerBalance()) {
-            System.out.println("Please input a valid bet");
-            bet(input.nextInt()); //make player bet amount they can afford
-        } else {
-            game.setCurrentMinBet(bet); //update min bet and remove the credits used to bet from the player
-            currentPlayer.setPlayerBalance(currentPlayer.getPlayerBalance() - bet);
-            game.setSabaccPot(game.getSabaccPot() + bet);
+        if(!currentPlayer.isBot) {
+            Scanner input = new Scanner(System.in);
+            if (game.getCurrentMinBet() > currentPlayer.getPlayerBalance()) {
+                fold(); //make player fold if min bet is larger than their balance
+                System.out.println("Due to a lack of sufficient balance, " + currentPlayer.getName() + " has been forced to fold.");
+            } else if (bet < game.getCurrentMinBet() || bet > currentPlayer.getPlayerBalance()) {
+                System.out.println("Please input a valid bet: \n Current Min Bet = " + game.getCurrentMinBet());
+                bet(input.nextInt()); //make player bet amount they can afford
+            } else {
+                game.setCurrentMinBet(bet); //update min bet and remove the credits used to bet from the player
+                currentPlayer.setPlayerBalance(currentPlayer.getPlayerBalance() - bet);
+                game.setSabaccPot(game.getSabaccPot() + bet);
+            }
+        }
+        else{
+            if(bet < game.getCurrentMinBet()) {
+                bet = game.getCurrentMinBet();
+            }
+            if (game.getCurrentMinBet() > currentPlayer.getPlayerBalance()) {
+                fold(); //make player fold if min bet is larger than their balance
+                System.out.println("Due to a lack of sufficient balance, " + currentPlayer.getName() + " has been forced to fold.");
+            } else {
+                game.setCurrentMinBet(bet); //update min bet and remove the credits used to bet from the player
+                currentPlayer.setPlayerBalance(currentPlayer.getPlayerBalance() - bet);
+                game.setSabaccPot(game.getSabaccPot() + bet);
+                System.out.println(currentPlayer.getName() + " has bet " + bet);
+            }
         }
     }
 

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public class Deck {
-    private ArrayList<Card> deckList = new ArrayList<Card>();   //the deck itself; an array list of cards
+    private ArrayList<Card> deckList = new ArrayList();   //the deck itself; an array list of cards
     public Deck()   {
         String mySuit = "";
         Card myCard = new Card(false,"YIPEE!",100);
@@ -48,11 +48,13 @@ public class Deck {
             deckList.add(y);
         }
     }   //takes all cards in deck & shuffles them(doesn't matter how many cards in deck)
-    public ArrayList getDeckList()  {
+    public ArrayList<Card> getDeckList()  {
         return deckList;
     }   //getter for the ArrayList deckList
     public Card drawCard()  {
-        return deckList.remove(0);
+        Card test = deckList.remove(0);
+        System.out.println(test);
+        return test;
     }   //removes the top card from deckList & returns it
     public void returnToDeck (Card returnedCard)    {
         deckList.add(returnedCard);
