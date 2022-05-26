@@ -47,8 +47,8 @@ public class Game {
     public void nextRound(){
         //itterate through players
         for(int k = 0; k < playerList.length; k++){
-            for(int i = 0; i < playerList[k].getHand().size(); i++){
-                deck.returnToDeck(playerList[k].getHand().remove(i));
+            for(int i = 0; playerList[k].getHand().size() > 0; i++){
+                deck.returnToDeck(playerList[k].getHand().remove(0));
             }
         }
         deck.shuffle();
