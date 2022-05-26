@@ -53,7 +53,7 @@ public class Deck {
     }   //getter for the ArrayList deckList
     public Card drawCard()  {
         Card test = deckList.remove(0);
-        System.out.println(test);
+        //System.out.println(test + "was drawn");
         return test;
     }   //removes the top card from deckList & returns it
     public void returnToDeck (Card returnedCard)    {

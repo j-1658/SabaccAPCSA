@@ -9,23 +9,23 @@ public class Round {
     public Round(Game g){
         isComplete = false;
         this.playerList = g.getPlayerList();
-        currentTurnNum = -1;
-        checked =false;
+        currentTurnNum = 0;
+        checked = false;
         game = g;
     }
-    public void sabaccShift(){
+    /*public void sabaccShift(){
         double shiftChance = 0.25; //25% chance to shift
         boolean isShifted = (Math.random() < shiftChance); //actually checks if it shifts
         if(isShifted){
             for (int p = 0; p < playerList.length; p++){ //for each player
 
-                for(int c = 0; c < playerList[p].hand.size(); c++){ //for each card in each players hand
+                for(int c = 0; c < playerList[p].hand.size(); c++){ //for each card in each player's hand
                     //checks if card is in interference field
                     if(!playerList[p].hand.get(c).getInField()){
                         //
                         //Randomize suit
                         String suit = "";
-                        switch((int)Math.random()*5){
+                        switch((int)(Math.random()*5)){
                             case 0 :
                                 suit = "Staves";
                                 break;
@@ -44,15 +44,15 @@ public class Round {
                         }
                         //
                         //randomize value
-                        int value = 0;
-                        //checks if its a face card
+                        int value ;
+                        //checks if it's a face card
                         if(suit.equals("Staves")||suit.equals("Coins")||suit.equals("Flasks")||suit.equals("Sabers")){
                             //normal values 1-15
                             value = (int) (Math.random() * 16) + 1;
                         } else{
                             //face card values
                             int[] specialList = {-11, 0, -8, -14,-15,-2,-13,-17};
-                            int index = (int)Math.random()*7;
+                            int index = (int)(Math.random()*7);
                             value = specialList[index];
                             switch(value){
                                 case -11 : suit = "BALANCE"; break;
@@ -72,11 +72,22 @@ public class Round {
                 }
             }
         }
-    }
+    }*///had to be scrapped but leaving code because I want to add it back later
 
     void nextTurn(){
-        playerTurn = new Turn(playerList[currentTurnNum+1],game);
-        playerTurn.run();
+        playerTurn = null;
+        Player nextPlayer;
+        try{
+            nextPlayer = playerList[currentTurnNum];
+        } catch(IndexOutOfBoundsException e){
+            nextPlayer = playerList[0];
+        }
+        playerTurn = new Turn(nextPlayer,game);
+
+        if(nextPlayer.isPlaying) {
+            playerTurn.run();
+        }
+        currentTurnNum++;
     }
     public Player findWinner(){
         Player winner = new Player(0, -1, "No Winner", true, game);
@@ -84,38 +95,36 @@ public class Round {
         int winnerHand = 0;
         int winnerCardCount = 0;
 
-        for(int p = 0; p < playerList.length; p++) { //checks for highest value
-            if (playerList[p].getIsPlaying()){
-                if (playerList[p].calcHand() >= winnerHand && winnerHand != -1) {
-                    if(playerList[p].getHand().size() == winnerCardCount) {
-                        int x = (int) Math.random()*2;
-                        if(x == 0){
-                            winner.playerNum = playerList[p].getPlayerNum();
-                            winnerCardCount = playerList[p].getHand().size();
-                            winnerHand = playerList[p].calcHand();
+        for (Player player : playerList) { //checks for highest value
+            if (player.getIsPlaying()) {
+                if (player.calcHand() >= winnerHand && winnerHand != -1) {
+                    if (player.getHand().size() == winnerCardCount) {
+                        int x = (int) (Math.random() * 2);
+                        if (x == 0) {
+                            winner.playerNum = player.getPlayerNum();
+                            winnerCardCount = player.getHand().size();
+                            winnerHand = player.calcHand();
                         }
-                    }
-                    else{
-                        winner.playerNum = playerList[p].getPlayerNum();
-                        winnerCardCount = playerList[p].getHand().size();
-                        winnerHand = playerList[p].calcHand();
+                    } else {
+                        winner.playerNum = player.getPlayerNum();
+                        winnerCardCount = player.getHand().size();
+                        winnerHand = player.calcHand();
                     }
                 }
-                if (playerList[p].calcHand() == -1) { //idiots array and sabacc
-                    if(winnerHand == -1){
-                        if(playerList[p].getHand().size() == winnerCardCount) {
-                            int x = (int) Math.random() * 2;
+                if (player.calcHand() == -1) { //idiots array and sabacc
+                    if (winnerHand == -1) {
+                        if (player.getHand().size() == winnerCardCount) {
+                            int x = (int) (Math.random() * 2);
                             if (x == 0) {
-                                winner.playerNum = playerList[p].getPlayerNum();
-                                winnerCardCount = playerList[p].getHand().size();
-                                winnerHand = playerList[p].calcHand();
+                                winner.playerNum = player.getPlayerNum();
+                                winnerCardCount = player.getHand().size();
+                                winnerHand = player.calcHand();
                             }
                         }
-                    }
-                    else{
-                        winner.playerNum = playerList[p].getPlayerNum();
-                        winnerCardCount = playerList[p].getHand().size();
-                        winnerHand = playerList[p].calcHand();
+                    } else {
+                        winner.playerNum = player.getPlayerNum();
+                        winnerCardCount = player.getHand().size();
+                        winnerHand = player.calcHand();
                     }
                 }
             }
@@ -126,6 +135,7 @@ public class Round {
                 return p;
             }
         }
+        game.setCurrentMinBet(10);
         return winner;
     }
 
@@ -136,7 +146,7 @@ public class Round {
     public Player run(){
         int p = 0;
         while(!checked){
-            System.out.println("STARTING " + playerList[p].getName() + "'s turn"); //PLACEHOLDER
+            System.out.println("\fSTARTING " + playerList[p].getName() + "'s turn"); //PLACEHOLDER
             nextTurn();
             checked = playerTurn.getIsCheckTurn();
             if(checked){

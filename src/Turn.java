@@ -17,13 +17,13 @@ public class Turn {
     public void run() {
         if (!currentPlayer.isBot && currentPlayer.isPlaying) {
             //game.myScreen.setCurrentOptions(Screen.optionListPresets.DRAWING);
-            System.out.println("Current Hand: " + currentPlayer.getHand());
+            System.out.println("Current Hand: " + currentPlayer.getHand() + "<Total = " + currentPlayer.calcHand() + ">");
             System.out.println("How much would you like to bet?\n Current Balance: " + currentPlayer.getPlayerBalance() + "c\n Minimum Bet: " + game.currentMinBet + "c");
             int theBet = kybd.nextInt();
             this.bet(theBet);
             System.out.println("Current Hand: " + currentPlayer.getHand());
             System.out.println("Would you like to:\n" +
-                    "1. Check\n" + "2. Fold\n" + "3. Hit\n\nInput your number of choice.");
+                    "1. Check\n" + "2. Fold\n" + "3. Hit\n4. Do nothing\n\nInput your number of choice." );
             int choice = kybd.nextInt();
             switch (choice) {
                 case 1:
@@ -36,6 +36,9 @@ public class Turn {
                     hit();
                     break;
             }
+            System.out.println("Current Hand: " + currentPlayer.getHand() + "<Total = " + currentPlayer.calcHand() + ">");
+            System.out.println("WARNING: NEXT HAND IS ABOUT TO BE DISPLAYED, CONFIRM THAT THE USER HAS CHANGED ENTERING ANY NUMBER");
+            int dump = kybd.nextInt();
         }
         else if (currentPlayer.isBot){
             int betAmt = (int)(Math.random()*(currentPlayer.getPlayerBalance()/3));
