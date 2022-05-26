@@ -63,7 +63,7 @@ public class Game {
         } else {
             System.out.println(win.getName() + " won with a hand of " + win.getHand() + "Want to play again?");
             playerList[win.getPlayerNum()].setPlayerBalance(playerList[win.getPlayerNum()].getPlayerBalance()+sabaccPot);
-            sabaccPot = 200;
+            sabaccPot = 20;
             currentMinBet = 10;
             System.out.println("1. Play Again\n2. Quit");
             if(scan.nextInt()==1){

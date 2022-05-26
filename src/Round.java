@@ -87,6 +87,9 @@ public class Round {
         if(nextPlayer.isPlaying) {
             playerTurn.run();
         }
+        else{
+            System.out.println(nextPlayer.getName() + " is not playing");
+        }
         currentTurnNum++;
     }
     public Player findWinner(){
@@ -97,7 +100,7 @@ public class Round {
 
         for (Player player : playerList) { //checks for highest value
             if (player.getIsPlaying()) {
-                if (player.calcHand() >= winnerHand && winnerHand != -1) {
+                if (player.calcHand() > winnerHand && winnerHand != -1) {
                     if (player.getHand().size() == winnerCardCount) {
                         int x = (int) (Math.random() * 2);
                         if (x == 0) {

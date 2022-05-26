@@ -48,7 +48,10 @@ public class Turn {
         }
         else if (currentPlayer.isBot){
             int betAmt = (int)(Math.random()*(currentPlayer.getPlayerBalance()/3));
+            System.out.println("bot has bet " + betAmt);
             bet(betAmt);
+
+
 
             currentPlayer.botPlay();
         }
@@ -103,7 +106,7 @@ public class Turn {
     public void hit() {
         currentPlayer.getHand().add(game.deck.drawCard()); //index 0 is top card here, might change later
         if (currentPlayer.calcHand() > 23) {
-            fold();
+            System.out.println("WARNING: Hand exceeds 23");
         }
     }
 }
