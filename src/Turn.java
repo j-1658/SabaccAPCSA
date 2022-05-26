@@ -21,7 +21,7 @@ public class Turn {
             System.out.println("How much would you like to bet?\n Current Balance: " + currentPlayer.getPlayerBalance() + "c\n Minimum Bet: " + game.currentMinBet + "c");
             int theBet = kybd.nextInt();
             this.bet(theBet);
-            System.out.println("Current Hand: " + currentPlayer.getHand());
+            System.out.println("Current Hand: " + currentPlayer.getHand() + "<Total = " + currentPlayer.calcHand() + ">");
             System.out.println("Would you like to:\n" +
                     "1. Check\n" + "2. Fold\n" + "3. Hit\n4. Do nothing\n\nInput your number of choice." );
             int choice = kybd.nextInt();
@@ -63,6 +63,7 @@ public class Turn {
                 game.setCurrentMinBet(bet); //update min bet and remove the credits used to bet from the player
                 currentPlayer.setPlayerBalance(currentPlayer.getPlayerBalance() - bet);
                 game.setSabaccPot(game.getSabaccPot() + bet);
+                System.out.println("Current pot: " + game.getSabaccPot());
             }
         }
         else{

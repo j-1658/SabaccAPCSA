@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SabaccAPCSA:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SabaccAPCSA_jar</output-path>
+    <root id="archive" name="SabaccAPCSA.jar">
+      <element id="module-output" name="SabaccAPCSA" />
+    </root>
+  </artifact>
+</component>

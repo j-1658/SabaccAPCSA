@@ -61,9 +61,10 @@ public class Game {
             System.out.println("Nobody won, Want to play again?");
             //Pot stays
         } else {
-            System.out.println(win.getName() + " won! Want to play again?");
+            System.out.println(win.getName() + " won with a hand of " + win.getHand() + "Want to play again?");
             playerList[win.getPlayerNum()].setPlayerBalance(playerList[win.getPlayerNum()].getPlayerBalance()+sabaccPot);
             sabaccPot = 200;
+            currentMinBet = 10;
             System.out.println("1. Play Again\n2. Quit");
             if(scan.nextInt()==1){
                 continuedGame = true;
