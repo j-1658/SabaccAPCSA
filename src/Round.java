@@ -82,6 +82,7 @@ public class Round {
         } catch(IndexOutOfBoundsException e){
             nextPlayer = playerList[0];
         }
+        System.out.println("\fSTARTING " + nextPlayer + "'s turn");
         playerTurn = new Turn(nextPlayer,game);
 
         if(nextPlayer.isPlaying) {
@@ -147,17 +148,11 @@ public class Round {
     }
 
     public Player run(){
-        int p = 0;
         while(!checked){
-            System.out.println("\fSTARTING " + playerList[p].getName() + "'s turn"); //PLACEHOLDER
             nextTurn();
             checked = playerTurn.getIsCheckTurn();
             if(checked){
                 break;
-            }
-            p++;
-            if(p>=playerList.length){
-                p=0;
             }
         }
         return findWinner();
