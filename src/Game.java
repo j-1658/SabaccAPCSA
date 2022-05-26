@@ -69,6 +69,9 @@ public class Game {
             if(scan.nextInt()==1){
                 continuedGame = true;
             }
+            else{
+                System.out.println("Thanks for playing!");
+            }
 
         }
         //myScreen.setCurrentOptions(Screen.optionListPresets.BETWEENROUND);

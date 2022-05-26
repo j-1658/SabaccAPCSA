@@ -29,7 +29,7 @@ public class Turn {
             switch (choice) {
                 case 1:
                     endTurn();
-                    break;
+                    return;
                 case 2:
                     this.fold();
                     break;
@@ -38,13 +38,13 @@ public class Turn {
                     break;
             }
             System.out.println("Current Hand: " + currentPlayer.getHand() + "<Total = " + currentPlayer.calcHand() + ">");
-            System.out.println("WARNING: NEXT HAND IS ABOUT TO BE DISPLAYED, CONFIRM THAT THE USER HAS CHANGED ENTERING ANY NUMBER");
+            System.out.println("WARNING: NEXT HAND IS ABOUT TO BE DISPLAYED, CONFIRM THAT THE USER HAS CHANGED BY PRESSING ENTER");
             try{
                 System.in.read();
             } catch(IOException e){
 
             }
-            
+
         }
         else if (currentPlayer.isBot){
             int betAmt = (int)(Math.random()*(currentPlayer.getPlayerBalance()/3));
