@@ -46,12 +46,10 @@ public class Turn {
             }
 
         }
-        else if (currentPlayer.isBot){
+        else if (currentPlayer.isBot&&currentPlayer.isPlaying){
             int betAmt = (int)(Math.random()*(currentPlayer.getPlayerBalance()/3));
-            System.out.println("bot has bet " + betAmt);
+            //System.out.println("bot has bet " + betAmt);
             bet(betAmt);
-
-
 
             currentPlayer.botPlay();
         }

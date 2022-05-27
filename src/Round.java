@@ -75,22 +75,14 @@ public class Round {
     }*///had to be scrapped but leaving code because I want to add it back later
 
     void nextTurn(){
-        playerTurn = null;
         Player nextPlayer;
-        try{
-            nextPlayer = playerList[currentTurnNum];
-        } catch(IndexOutOfBoundsException e){
-            nextPlayer = playerList[0];
-        }
-        System.out.println("\fSTARTING " + nextPlayer + "'s turn");
-        playerTurn = new Turn(nextPlayer,game);
+        if(currentTurnNum >= playerList.length) currentTurnNum = 0;
+        nextPlayer = playerList[currentTurnNum];
 
-        if(nextPlayer.isPlaying) {
-            playerTurn.run();
-        }
-        else{
-            System.out.println(nextPlayer.getName() + " is not playing");
-        }
+        System.out.println("\f------------------STARTING " + nextPlayer.getName() + "'s turn------------------");
+        playerTurn = new Turn(nextPlayer,game);
+        playerTurn.run();
+
         currentTurnNum++;
     }
     public Player findWinner(){
@@ -101,7 +93,7 @@ public class Round {
 
         for (Player player : playerList) { //checks for highest value
             if (player.getIsPlaying()) {
-                if (player.calcHand() > winnerHand && winnerHand != -1) {
+                if (player.calcHand() > winnerHand && winnerHand != -1 && winnerHand <=23) {
                     if (player.getHand().size() == winnerCardCount) {
                         int x = (int) (Math.random() * 2);
                         if (x == 0) {
